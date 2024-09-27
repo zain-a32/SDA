@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Product class representing an item in the shopping cart
+class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+// ShoppingCart class to manage products and handle payments
+class ShoppingCart {
+    private List<Product> products;
+
+    public ShoppingCart() {
+        this.products = new ArrayList<>();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public double getTotalPrice() {
+        return products.stream().mapToDouble(Product::getPrice).sum();
+    }
+
+    public void processPayment() {
+        double total = getTotalPrice();
+        // Simulating payment processing directly within ShoppingCart
+        System.out.println("Processing payment of: $" + total);
+        // Assume payment is always successful
+        System.out.println("Payment successful!");
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+}
+
+// Main application class
+public class ShoppingApp {
+    public static void main(String[] args) {
+        // Create products
+        Product product1 = new Product("Laptop", 999.99);
+        Product product2 = new Product("Headphones", 199.99);
+
+        // Create shopping cart
+        ShoppingCart cart = new ShoppingCart();
+        cart.addProduct(product1);
+        cart.addProduct(product2);
+
+        // Calculate total and process payment
+        System.out.println("Total amount: $" + cart.getTotalPrice());
+        cart.processPayment();
+    }
+}
