@@ -1,0 +1,4 @@
+package observer.eventmanagement;
+public interface SMSSupportListener {
+    void onSMSReceived(SMSMessage sms);
+}

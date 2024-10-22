@@ -1,0 +1,22 @@
+package observer.eventmanagement;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SMSManager {
+    private List<SMSSupportListener> listeners = new ArrayList<>();
+
+    public void attach(SMSSupportListener listener) {
+        listeners.add(listener);
+    }
+
+    public void detach(SMSSupportListener listener) {
+        listeners.remove(listener);
+    }
+
+    public void sendSMS(SMSMessage sms) {
+        for (SMSSupportListener listener : listeners) {
+            listener.onSMSReceived(sms);
+        }
+    }
+}
